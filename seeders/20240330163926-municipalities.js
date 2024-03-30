@@ -12,16 +12,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.bulkInsert('communities',
+
+    await queryInterface.bulkInsert('municipalities',
     [
       {
-        "nameC": "La Paz",
+        "nameM": "Trojes",
         "state" : true,
         "updatedAt": "2024-03-26T22:40:28.477Z",
         "createdAt": "2024-03-26T22:40:28.477Z",
-        "MunicipalityId": 1
+        "departmentId": 7
       }
     ], {});
+
   },
 
   async down (queryInterface, Sequelize) {
@@ -31,6 +33,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('communities', null, {});
+    await queryInterface.bulkDelete('municipalities', null, {})
   }
 };

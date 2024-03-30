@@ -16,19 +16,85 @@ module.exports = {
     await queryInterface.bulkInsert('Departments',
       [
         {
-          "nameD": "Tegucigalpa",
+          "nameD": "Atlántida",
           "state": true,
           "createdAt": new Date(),
           "updatedAt": new Date(),
         },
         {
-          "nameD": "Atlantida",
+          "nameD": "Choluteca",
           "state": true,
           "createdAt": new Date(),
           "updatedAt": new Date(),
         },
         {
-          "nameD": "Cortes",
+          "nameD": "Colón",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Comayagua",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Copán",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Cortés",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "El Paraíso.",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Francisco Morazán.",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Gracias a Dios",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Intibucá",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Islas de la Bahía",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "La Paz",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Lempira",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Ocotepeque",
           "state": true,
           "createdAt": new Date(),
           "updatedAt": new Date(),
@@ -40,11 +106,24 @@ module.exports = {
           "updatedAt": new Date(),
         },
         {
+          "nameD": "Santa Bárbara",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
+          "nameD": "Valle",
+          "state": true,
+          "createdAt": new Date(),
+          "updatedAt": new Date(),
+        },
+        {
           "nameD": "Yoro",
           "state": true,
           "createdAt": new Date(),
           "updatedAt": new Date(),
         },
+        
       ], {});
 
   },

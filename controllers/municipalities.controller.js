@@ -31,7 +31,7 @@ const create = async (req = request, res = response) => {
 
         const existMunicipality = await Municipalities.findOne({
             where: {
-                nameM: { [Op.like]: req.body.municipality }
+                nameM: { [Op.like]: req.body.mameM }
             }
         });
 
@@ -39,10 +39,8 @@ const create = async (req = request, res = response) => {
             return res.status(400).json({ ok: false, msg: 'El Municipio ya esta registrado', data: null });
         }
 
-        console.log(req.body.municipality)
-
         const newMunicipality = await Municipalities.create({
-            nameM: req.body.municipality,
+            nameM: req.body.nameM,
             state: true,
             createdAt: new Date(),
             updatedAt: new Date(),
@@ -56,8 +54,37 @@ const create = async (req = request, res = response) => {
     }
 }
 
+const findByDeparmentId = async (req = request, res = response) => {
+    try {
+
+        const existDepartment = await Department.findByPk(req.params.departmentId);
+
+        if (!existDepartment) {
+            return res.status(400).json({ ok: false, msg: 'El Departemento no esta registrado', data: null });
+        }
+
+        const municipalities = await Municipalities.findAll({
+            where: {
+                state: true,
+                DepartmentId: req.params.departmentId
+            },
+            /*include: [
+                { model: Department }
+            ]*/
+        });
+
+        return res.status(200).json({ ok: true, msg: 'Consulta exitosa', data: municipalities });
+
+
+    } catch (error) {
+        res.status(500).json({ ok: false, msg: "Internal Server Error", data: error });
+    }
+}
+
+
 
 module.exports = {
     findAll,
-    create
+    create,
+    findByDeparmentId
 }

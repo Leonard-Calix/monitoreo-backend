@@ -1,17 +1,20 @@
 const { Router } = require('express');
+const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
-const { findAll, create, findByDeparmentId } = require('../controllers/municipalities.controller');
+const { findAll, create, findByMunicipalityId } = require('../controllers/communities.controller');
 
 const router = Router();
 
 router.get('/', [], findAll);
 
-router.get('/department/:departmentId', [], findByDeparmentId);
+router.get('/municipality/:municipalityId', [], findByMunicipalityId);
 
 router.post('/', [
     //check('department', 'El nombre es obligatorio').isEmpty(),
     validarCampos
 ], create);
+
+//router.post('/', );
 
 
 module.exports = router;

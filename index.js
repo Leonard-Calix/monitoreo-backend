@@ -14,6 +14,8 @@ app.use('/api/municipalities', require('./routes/municipality'))
 app.use('/api/polls', require('./routes/poll'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/questions', require('./routes/questions'))
+app.use('/api/communities', require('./routes/communities'))
+
 
 
 app.listen(process.env.PORT, () => {

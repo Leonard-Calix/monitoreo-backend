@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Community.hasMany(models.Poll)
+      Community.belongsTo(models.Municipalities)
     }
   }
   Community.init({
