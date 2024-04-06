@@ -18,6 +18,9 @@ module.exports = {
       state: {
         type: Sequelize.BOOLEAN
       },
+      recommendation: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      description: {
+        allowNull: true,
+        type: Sequelize.STRING
+      },
       response: {
         type: Sequelize.BOOLEAN
       },

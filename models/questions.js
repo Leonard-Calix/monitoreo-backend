@@ -21,6 +21,9 @@ module.exports = (sequelize, DataTypes) => {
     state: {
       type: DataTypes.BOOLEAN,
       defaultValue: 1
+    },
+    recommendation: {
+      type: DataTypes.BOOLEAN,
     }
   }, {
     sequelize,

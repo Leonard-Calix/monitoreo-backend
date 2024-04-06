@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Poll.init({
+    description: DataTypes.STRING,
     response: DataTypes.BOOLEAN
   }, {
     sequelize,
