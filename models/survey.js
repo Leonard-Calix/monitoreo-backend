@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Poll extends Model {
+  class Survey extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,18 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Poll.belongsTo(models.User)
-      Poll.belongsTo(models.Question)
-      Poll.belongsTo(models.Community)
-      Poll.belongsTo(models.Survey)
+      Survey.belongsTo(models.User)
+      Survey.belongsTo(models.Community)
     }
   }
-  Poll.init({
-    description: DataTypes.STRING,
-    response: DataTypes.BOOLEAN
+  Survey.init({
+    recomendation: DataTypes.STRING,
+    monitoringDate: DataTypes.DATE
   }, {
     sequelize,
-    modelName: 'Poll',
+    modelName: 'Survey',
   });
-  return Poll;
+  return Survey;
 };

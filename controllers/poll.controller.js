@@ -1,5 +1,5 @@
 const { request, response } = require("express");
-const { Poll, Community, Question, User } = require("../models");
+const { Poll, Community, Question, User, Survey } = require("../models");
 const { Sequelize, Transaction } = require('sequelize');
 const models = require('../models');
 
@@ -43,12 +43,22 @@ const BulkCeate = async (req = request, res = response) => {
 
     try {
 
-        let { polls } = req.body;
+        let { polls, survey } = req.body;
+
+        const newSurvey = await Survey.create({
+            recomendation: survey.recomendation,
+            monitoringDate: new Date(),
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            CommunityId: survey.communityId,
+            UserId: 1 //req.user.Id,
+        }, { t });
 
         polls.forEach(async (element, index) => {
             element.UserId = 1; //req.user.id;
             element.createdAt = new Date();
             element.updatedAt = new Date();
+            element.SurveyId = newSurvey.id
         });
 
         // Utiliza bulkCreate para insertar múltiples usuarios dentro de la transacción
