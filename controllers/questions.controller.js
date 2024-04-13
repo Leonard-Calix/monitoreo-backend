@@ -32,6 +32,7 @@ const create = async (req = request, res = response) => {
 
         const neQuestion = await Question.create({
             description: req.body.description,
+            recommendation: req.body.recommendation,
             type: req.body.type,
             state: true,
             createdAt: new Date(),
