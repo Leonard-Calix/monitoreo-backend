@@ -38,7 +38,7 @@ const login = async (req = request, res = response) => {
 
         const token = await generateJWT(usuario.id);
 
-        res.json({ usuario, token });
+        res.json({ user: usuario, token });
 
     } catch (error) {
         res.status(500).json({ msg: 'Hable con el administrador' });
@@ -56,7 +56,7 @@ const checkToken = async (req = request, res = response) => {
 
 
     } catch (error) {
-        res.status(500).json({ ok: false, msg: error , data: null});
+        res.status(500).json({ ok: false, msg: error, data: null });
     }
 
 }

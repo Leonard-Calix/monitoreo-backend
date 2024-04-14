@@ -17,6 +17,22 @@ const findAll = async (req = request, res = response) => {
     }
 }
 
+const findOne = async (req = request, res = response) => {
+    try {
+
+        const question = await Question.findByPk(req.params.id);
+
+        if (!question) {
+            return res.json({ ok: true, msg: 'Consulta exitosa', data: 'No se encontro el recurso' });
+        }
+
+        res.json({ ok: true, msg: 'Consulta exitosa', data: question });
+
+    } catch (error) {
+        res.status(500).json({ ok: false, msg: "Internal Server Error", data: error });
+    }
+}
+
 const create = async (req = request, res = response) => {
     try {
 
@@ -46,8 +62,34 @@ const create = async (req = request, res = response) => {
     }
 }
 
+const update = async (req = request, res = response) => {
+    try {
+
+        const question = await Question.findByPk(req.params.id);
+
+        if (!question) {
+            return res.json({ ok: true, msg: 'Consulta exitosa', data: 'Pregunta no existe' });
+        }
+
+        await question.update({
+            description: req.body.description,
+            recommendation: req.body.recommendation,
+            type: req.body.type,
+            state: req.body.state,
+            updatedAt: new Date()
+        });
+        
+        res.json({ ok: true, msg: 'Consulta exitosa', data: question });
+
+    } catch (error) {
+        res.status(500).json({ ok: false, msg: "Internal Server Error", data: error });
+    }
+}
+
 
 module.exports = {
     findAll,
-    create
+    create,
+    findOne,
+    update
 }

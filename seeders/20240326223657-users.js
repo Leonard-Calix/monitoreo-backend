@@ -21,7 +21,7 @@ module.exports = {
           "lastName": "Calix",
           "userName": "blcalix",
           "email": "blcalix@gmail.com",
-          "password": "$2a$10$2XfOUkeDMK83y/cdvrPHf.MTQ16O7dkYilWX6NewK/D882gnqPRqW",
+          "password": "$2a$10$PT1y9D9qZLcuHaLd6ieLR.CVG99.4ljEqdshg6Dwn/npdw5boGbfK",
           "updatedAt": "2024-03-26T22:40:28.477Z",
           "createdAt": "2024-03-26T22:40:28.477Z"
         },
@@ -31,7 +31,7 @@ module.exports = {
           "lastName": "Pacheco",
           "userName": "cpacheco",
           "email": "cpacheco@gmail.com",
-          "password": "$2a$10$2XfOUkeDMK83y/cdvrPHf.MTQ16O7dkYilWX6NewK/D882gnqPRqW",
+          "password": "$2a$10$PT1y9D9qZLcuHaLd6ieLR.CVG99.4ljEqdshg6Dwn/npdw5boGbfK",
           "updatedAt": "2024-03-26T22:40:28.477Z",
           "createdAt": "2024-03-26T22:40:28.477Z"
         }

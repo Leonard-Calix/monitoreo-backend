@@ -13,7 +13,7 @@ router.post('/login', [
     validarCampos
 ], login);
 
-router.post('/check-token', [validarJWT], checkToken);
+router.get('/check-token', [validarJWT], checkToken);
 
 
 module.exports = router;
