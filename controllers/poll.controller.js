@@ -1,6 +1,6 @@
 const { request, response } = require("express");
 const { Poll, Community, Question, User, Survey } = require("../models");
-const { Sequelize, Transaction } = require('sequelize');
+const { Sequelize, Transaction, where } = require('sequelize');
 const models = require('../models');
 
 
@@ -51,11 +51,11 @@ const BulkCeate = async (req = request, res = response) => {
             createdAt: new Date(),
             updatedAt: new Date(),
             CommunityId: survey.communityId,
-            UserId: 1 //req.user.Id,
+            UserId: req.user.id,
         }, { t });
 
         polls.forEach(async (element, index) => {
-            element.UserId = 1; //req.user.id;
+            element.UserId = req.user.id;
             element.createdAt = new Date();
             element.updatedAt = new Date();
             element.SurveyId = newSurvey.id
@@ -103,8 +103,40 @@ const findAll = async (req = request, res = response) => {
 
 }
 
+const findOne = async (req = request, res = response) => {
+
+    try {
+
+        const Polls = await Poll.findOne({
+
+            where: {
+                id: req.params.id
+            },
+
+            include: [
+                {
+                    model: User
+                },
+                {
+                    model: Question
+                },
+                {
+                    model: Community
+                },
+            ]
+        });
+
+        res.status(200).json({ ok: true, msg: 'Consulta exitosa', data: Polls });
+
+    } catch (error) {
+        res.status(500).json({ ok: false, msg: 'Hable con el administrador', data: error });
+    }
+
+}
+
 module.exports = {
     create,
     findAll,
-    BulkCeate
+    BulkCeate,
+    findOne
 }

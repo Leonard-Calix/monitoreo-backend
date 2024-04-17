@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       Poll.belongsTo(models.Question)
       Poll.belongsTo(models.Community)
       Poll.belongsTo(models.Survey)
+      
     }
   }
   Poll.init({

@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Survey.belongsTo(models.User)
       Survey.belongsTo(models.Community)
+      Survey.hasMany(models.Poll)
     }
   }
   Survey.init({

@@ -6,17 +6,17 @@ const { validarJWT } = require('../middlewares/valida-jwt');
 
 const router = Router();
 
-router.get('/', [], findAll);
+router.get('/', [validarJWT], findAll);
 
-router.get('/:id', [], findOne);
+router.get('/:id', [validarJWT], findOne);
 
 router.post('/', [
-    //validarJWT,
+    validarJWT,
     validarCampos
 ], create);
 
 router.put('/:id', [
-    //validarJWT,
+    validarJWT,
     validarCampos
 ], update);
 
