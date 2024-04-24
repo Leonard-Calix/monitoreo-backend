@@ -61,14 +61,14 @@ const getAllUsers = async (req = request, res = response) => {
 
         const users = await User.findAll({
             attributes: {
-                exclude: ['id', 'password']
+                exclude: ['password']
             },
             where: {
                 active: 1
             }
         });
 
-        res.json({ users });
+        res.json({ ok: true, msg: 'Consulta exitosa',  data : users });
 
     } catch (error) {
         res.status(500).json({ error: JSON.stringify(error) });

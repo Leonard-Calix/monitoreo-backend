@@ -2,11 +2,11 @@ const { Router } = require('express');
 const { create, getAllUsers} = require('../controllers/users.controller');
 const { check } = require('express-validator');
 const { existEmail } = require('../helpers/db-validators');
-const { validarCampos  }  = require('../middlewares')
+const { validarCampos, validarJWT  }  = require('../middlewares')
 
 const router = Router();
 
-router.get('/', [], getAllUsers);
+router.get('/', [validarJWT], getAllUsers);
 
 router.post('/', [
     check('firstName', 'El nombre es obligatorio').not().isEmpty(),
@@ -17,6 +17,7 @@ router.post('/', [
    //check('rol', 'El rol no es permitido').isIn(['ADMIN_ROLE', 'USER_ROLE']),
     //check('rol').custom(esRoleValido), 
     check('email').custom(existEmail),
+    validarJWT,
     validarCampos
 ], create);
 /*

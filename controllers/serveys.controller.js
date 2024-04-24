@@ -6,23 +6,16 @@ const findAll = async (req = request, res = response) => {
 
     try {
 
-        const Polls = await Poll.findAll({
+        const Polls = await Survey.findAll({
 
             include: [
                 {
                     model: User
                 },
                 {
-                    model: Question
-                },
-                {
                     model: Community
-                },
-                {
-                    model: Survey
-                },
+                }
             ]
-
         });
 
         res.status(200).json({ ok: true, msg: 'Consulta exitosa', data: Polls });

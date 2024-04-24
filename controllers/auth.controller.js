@@ -36,11 +36,14 @@ const login = async (req = request, res = response) => {
             });
         }
 
+        console.log('first')
+
         const token = await generateJWT(usuario.id);
 
         res.json({ user: usuario, token });
 
     } catch (error) {
+        console.log(error)
         res.status(500).json({ msg: 'Hable con el administrador' });
     }
 }
