@@ -18,13 +18,13 @@ const login = async (req = request, res = response) => {
 
         if (!usuario) {
             return res.status(400).json({
-                msg: 'Usuario / Password  no son correctos - 1'
+                msg: 'Usuario / Password  no son correctos'
             });
         }
 
         if (!usuario.active) {
             return res.status(400).json({
-                msg: 'Usuario / Password  no son correctos - 2'
+                msg: 'Usuario / Password  no son correctos'
             });
         }
 
@@ -32,7 +32,7 @@ const login = async (req = request, res = response) => {
 
         if (!validPassword) {
             return res.status(400).json({
-                msg: 'Usuario / Password  no son correctos - 3'
+                msg: 'Usuario / Password  no son correctos'
             });
         }
 

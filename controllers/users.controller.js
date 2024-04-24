@@ -2,6 +2,7 @@ const { request, response } = require("express");
 const bcryptjs = require("bcryptjs");
 
 const { User } = require("../models/");
+const { Op } = require("sequelize");
 
 const create = async (req = request, res = response) => {
     try {
@@ -31,44 +32,71 @@ const create = async (req = request, res = response) => {
 const update = async (req = request, res = response) => {
     try {
 
-        const { idUser } = req.params;
-        const { id, password, google, email, ...resto } = req.body;
+        const { id } = req.params;
+        //const { id, password, email, ...resto } = req.body;
+
+        const userUpdate = await User.findByPk(id);
 
         // TODO validar contra base de datos
+        /*
         if (password) {
             const salt = bcryptjs.genSaltSync();
             resto.password = bcryptjs.hashSync(password, salt);
         }
+        */
 
-        const user = await User.update(req.body, {
-            where: {
-                id: id
-            }
-        });
+        await User.update(
+            {
+                active: (req.body.active == 'true' ? true : false),
+                updateAt: new Date(),
 
-        res.json({ user });
+            },
+            {
+                where: {
+                    id: id,
+                },
+            },
+        );
+
+        res.json({ ok: true, msg: "Consulta exitosa", data: null });
 
     } catch (error) {
-        res.status(500).json({ error: JSON.stringify(error) });
+        res.status(500).json({ ok: true, msg: "Internal Server Error", data: JSON.stringify(error) });
     }
 }
 
 const getAllUsers = async (req = request, res = response) => {
     try {
 
-        const { limit = 2, from = 0 } = req.query;
-        const query = { state: true };
+        const users = await User.findAll({
+            attributes: {
+                exclude: ['password']
+            },
+            where: {
+                id: { [Op.notIn]: [req.user.id] }
+            }
+        });
+
+        res.json({ ok: true, msg: 'Consulta exitosa', data: users });
+
+    } catch (error) {
+        res.status(500).json({ error: JSON.stringify(error) });
+    }
+}
+
+const getUser = async (req = request, res = response) => {
+    try {
 
         const users = await User.findAll({
             attributes: {
                 exclude: ['password']
             },
             where: {
-                active: 1
+                id: req.params.id
             }
         });
 
-        res.json({ ok: true, msg: 'Consulta exitosa',  data : users });
+        res.json({ ok: true, msg: 'Consulta exitosa', data: users[0] });
 
     } catch (error) {
         res.status(500).json({ error: JSON.stringify(error) });
@@ -93,5 +121,6 @@ module.exports = {
     create,
     update,
     getAllUsers,
-    deleteUSers
+    deleteUSers,
+    getUser
 }

@@ -22,8 +22,8 @@ const existEmail = async (email = '') => {
 }
 
 const existUserById = async (id = '') => {
-    const existRol = await User.findById(id);
-    if (!existRol) {
+    const existUser = await User.findByPk(id);
+    if (!existUser) {
         throw new Error('El id no esta registrado');
     }
 }
@@ -31,5 +31,5 @@ const existUserById = async (id = '') => {
 module.exports = {
     //esRoleValido,
     existEmail,
-    //existUserById
+    existUserById
 }

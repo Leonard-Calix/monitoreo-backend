@@ -7,7 +7,6 @@ const findAll = async (req = request, res = response) => {
     try {
 
         const questions = await Question.findAll({
-            where: { state: true }
         });
 
         res.json({ ok: true, msg: 'Consulta exitosa', data: questions });
